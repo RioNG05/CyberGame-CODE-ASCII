@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER CRIME DIVISION - DECRYPTION SYSTEM</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="text-green-500 p-4 md:p-8 min-h-screen flex flex-col justify-between">
+
+    <header class="border-b border-green-900 pb-4 mb-6">
+        <div class="flex justify-between items-center flex-wrap gap-2">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold tracking-wider neon-text">HỆ THỐNG GIẢI MÃ DỮ LIỆU TỘI PHẠM
+                    MẠNG</h1>
+                <p class="text-xs text-green-700 mt-1">CỤC CẢNH SÁT PHÒNG CHỐNG TỘI PHẠM CÔNG NGHỆ CAO
+                </p>
+            </div>
+            <div class="bg-green-950 border border-green-500 px-3 py-1 rounded text-sm animate-pulse">
+                TRẠNG THÁI: ĐANG KHÓA TRUY CẬP
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-green-950/20 border border-green-900 p-4 rounded mb-6 text-sm text-green-400">
+        <span class="text-red-500 font-bold">[CẢNH BÁO TRINH SÁT]:</span> Đường dây lừa đảo tài chính vừa bị triệt phá.
+        Toàn bộ dữ liệu mật đã bị mã hóa. Hãy sử dụng <strong>Bảng mã ASCII Reference Table (32-127)</strong> để giải mã
+        10 câu hỏi bản chất kinh tế dưới đây nhằm thu thập 10 ký tự bị xáo trộn.
+        <br><br>
+        <span class="text-yellow-500 font-bold">[QUY TẮC GIẢI MÃ]:</span> CODE trả về là dạng Dec/Hex/Binary.
+        <strong>Nếu số lần lặp lại của kí tự trong PASSWORD (KEYWORD) >= 2, thì số lần lặp sẽ được ghép ở đầu hoặc cuối
+            mã CODE.</strong> Các đội phải tự giữ bí mật và sắp xếp các kí tự tìm được từ mã CODE (có thể là số/chữ) sau
+        đó ghép lại thành PASSWORD (KEYWORD) để truy cập hệ
+        thống!
+    </section>
+
+    <main class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+
+        <div class="lg:col-span-2 space-y-4 max-h-[60vh] overflow-y-auto pr-2 border-r border-green-950"
+            id="questions-container">
+        </div>
+
+        <div class="bg-black border border-green-900 p-4 rounded sticky top-4">
+            <h3 class="text-center font-bold border-b border-green-900 pb-2 mb-3 text-white">ASCII REFERENCE TABLE (32 -
+                127)</h3>
+            <div
+                class="text-[11px] font-mono leading-relaxed text-green-400 max-h-[50vh] overflow-y-auto grid grid-cols-2 gap-x-4">
+                <div><strong>Dec | Hex | Bin | Char</strong></div>
+                <div><strong>Dec | Hex | Bin | Char</strong></div>
+                <div>32 | 20 | 100000 | Space</div>
+                <div>41 | 29 | 101001 | A</div>
+                <div>49 | 31 | 110001 | I</div>
+                <div>65 | 41 | 1000001 | A</div>
+                <div>66 | 42 | 1000010 | B</div>
+                <div>71 | 47 | 1000111 | G</div>
+                <div>72 | 48 | 1001000 | H</div>
+                <div>73 | 49 | 1001001 | I</div>
+                <div>76 | 4C | 1001100 | L</div>
+                <div>78 | 4E | 1001110 | N</div>
+                <div>84 | 54 | 1010100 | T</div>
+                <div>85 | 55 | 1010101 | U</div>
+                <div>89 | 59 | 1011001 | Y</div>
+                <div>99 | 63 | 1100011 | C</div>
+            </div>
+            <p class="text-[10px] text-green-700 mt-2 italic text-center">*Lưu ý: Tra cứu đầy đủ bằng file ảnh đính kèm
+                của tổ chuyên án.</p>
+        </div>
+    </main>
+
+    <footer class="border-t border-green-900 pt-4 mt-6 flex flex-col items-center gap-4">
+        <div id="final-keyword-section" class="w-full max-w-md flex flex-col gap-3">
+            <p class="text-xs text-yellow-500 font-bold text-center">BƯỚC CUỐI: SẮP XẾP VÀ NHẬP PASSWORD (KEYWORD)</p>
+            <input type="text" id="final-keyword" placeholder="NHẬP PASSWORD (KEYWORD)..."
+                class="w-full bg-black border border-green-500 px-4 py-2 rounded text-green-400 focus:outline-none neon-border uppercase text-center font-bold tracking-widest">
+            <button onclick="checkFinalKeyword()"
+                class="bg-green-800 text-black hover:bg-green-500 px-8 py-3 rounded cursor-pointer tracking-widest font-bold transition-all uppercase">
+                KIỂM TRA PASSWORD (KEYWORD)
+            </button>
+        </div>
+    </footer>
+
+    <!-- Modal Thành Công -->
+    <div id="success-modal"
+        class="fixed inset-0 bg-black/95 z-50 hidden flex-col items-center justify-center backdrop-blur-sm p-4">
+        <div
+            class="bg-green-950 border border-green-500 p-8 rounded shadow-[0_0_40px_rgba(34,197,94,0.4)] max-w-2xl w-full text-center animate-fade-in relative overflow-hidden">
+            <div
+                class="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.4)_50%)] bg-[length:100%_4px] pointer-events-none">
+            </div>
+
+            <div class="mb-6 flex justify-center relative z-10">
+                <svg class="w-24 h-24 text-green-500 animate-pulse drop-shadow-[0_0_10px_rgba(34,197,94,0.8)]"
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                    </path>
+                </svg>
+            </div>
+
+            <h2
+                class="text-2xl md:text-3xl font-bold text-white mb-2 neon-text tracking-[0.2em] uppercase relative z-10">
+                TRUY CẬP ĐƯỢC CHẤP NHẬN</h2>
+            <p class="text-green-400 mb-8 font-mono text-xs md:text-sm tracking-widest relative z-10">[HỆ THỐNG]: CHÚC
+                MỪNG ĐỘI ĐIỀU TRA. DỮ LIỆU MẬT ĐÃ ĐƯỢC BẺ KHÓA THÀNH CÔNG.</p>
+
+            <div class="bg-black/60 border border-green-800 p-6 rounded text-left mb-8 relative z-10">
+                <p class="text-yellow-500 font-bold mb-3 tracking-widest border-b border-green-900 pb-2">BÁO CÁO PHÂN
+                    TÍCH TỘI PHẠM:</p>
+                <p class="text-green-300 text-sm leading-relaxed mb-4">
+                    Theo phân tích dữ liệu giải mã, bản chất cốt lõi của đường dây lừa đảo tài chính này chính là hành
+                    vi:
+                </p>
+                <div
+                    class="text-3xl md:text-4xl text-white font-bold text-center tracking-[0.3em] neon-text uppercase py-5 border border-green-500/30 bg-green-900/40 rounded">
+                    TÍCH LŨY TƯ BẢN
+                </div>
+            </div>
+
+            <button onclick="closeModal()"
+                class="bg-green-600 text-black hover:bg-white hover:text-black hover:shadow-[0_0_20px_rgba(255,255,255,0.8)] px-10 py-3 rounded tracking-[0.2em] font-bold transition-all uppercase relative z-10">
+                TRÍCH XUẤT TOÀN BỘ DỮ LIỆU
+            </button>
+        </div>
+    </div>
+
+    <!-- Terminal Hacking Simulation -->
+    <div id="hack-simulation"
+        class="fixed inset-0 bg-black z-[100] hidden p-2 md:p-4 overflow-hidden pointer-events-none select-none font-mono text-green-500">
+        <!-- Scanline & CRT Overlay -->
+        <div
+            class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%] z-50 pointer-events-none">
+        </div>
+        <div class="absolute inset-0 bg-green-900/10 mix-blend-overlay z-40 pointer-events-none"></div>
+
+        <div
+            class="relative z-20 w-full h-full grid grid-cols-2 md:grid-cols-3 grid-rows-4 md:grid-rows-3 gap-2 md:gap-4">
+
+            <!-- Window: Terminal -->
+            <div
+                class="border border-green-600 bg-black/80 flex flex-col p-2 shadow-[0_0_10px_rgba(0,255,0,0.2)] col-span-2 md:col-span-1 row-span-2">
+                <div class="flex justify-between items-center border-b border-green-600 pb-1 mb-1 px-1">
+                    <span class="text-xs font-bold text-white uppercase">Terminal</span>
+                    <div class="flex gap-1"><span class="w-2 h-2 bg-green-600 rounded-full"></span><span
+                            class="w-2 h-2 bg-green-600 rounded-full"></span></div>
+                </div>
+                <div id="hack-terminal-lines"
+                    class="text-[10px] md:text-xs overflow-hidden flex-1 break-all space-y-1 text-green-400"></div>
+            </div>
+
+            <!-- Window: Directory -->
+            <div class="border border-green-600 bg-black/80 flex flex-col p-2 shadow-[0_0_10px_rgba(0,255,0,0.2)]">
+                <div class="flex justify-between items-center border-b border-green-600 pb-1 mb-1 px-1">
+                    <span class="text-xs font-bold text-white uppercase">Directory</span>
+                </div>
+                <pre class="text-[10px] md:text-[11px] overflow-hidden flex-1 leading-tight text-green-400">
+├─ models
+│  ├─ contestperiod.exe
+│  ├─ cntrl.exe
+│  └─ entry.bin
+├─ routes
+│  ├─ error.md
+│  └─ info.bin
+└─ storage  <span class="bg-green-600 text-black px-1">crack</span>
+                </pre>
+            </div>
+
+            <!-- Window: Encryptor -->
+            <div
+                class="border border-green-600 bg-black/80 flex flex-col p-2 shadow-[0_0_10px_rgba(0,255,0,0.2)] row-span-2">
+                <div class="flex justify-between items-center border-b border-green-600 pb-1 mb-1 px-1">
+                    <span class="text-xs font-bold text-white uppercase">Encryptor</span>
+                </div>
+                <pre id="hack-code-lines"
+                    class="text-[9px] md:text-[10px] overflow-hidden flex-1 leading-tight text-green-400 whitespace-pre-wrap"></pre>
+            </div>
+
+            <!-- Window: Receiver (Skull) -->
+            <div
+                class="border border-green-600 bg-black/80 flex flex-col p-2 shadow-[0_0_10px_rgba(0,255,0,0.2)] row-span-2 md:row-span-1">
+                <div class="flex justify-between items-center border-b border-green-600 pb-1 mb-1 px-1">
+                    <span class="text-xs font-bold text-white uppercase">Receiver</span>
+                </div>
+                <div
+                    class="flex-1 flex items-center justify-center text-[10px] md:text-xs leading-none animate-pulse text-green-500 font-black text-center whitespace-pre drop-shadow-[0_0_5px_rgba(34,197,94,0.8)]">
+                    ____
+                    / \
+                    | O O |
+                    | ^ |
+                    \ ___ /
+                    \_____/
+                </div>
+            </div>
+
+            <!-- Window: Transfer -->
+            <div class="border border-green-600 bg-black/80 flex flex-col p-2 shadow-[0_0_10px_rgba(0,255,0,0.2)]">
+                <div class="flex justify-between items-center border-b border-green-600 pb-1 mb-1 px-1">
+                    <span class="text-xs font-bold text-white uppercase">Transfer</span>
+                    <span class="text-[10px] animate-pulse" id="hack-transfer-rate">604MB/s</span>
+                </div>
+                <div class="flex-1 flex items-end gap-[1px] p-1" id="hack-chart">
+                    <!-- Bars injected by JS -->
+                </div>
+            </div>
+
+            <!-- Window: Download -->
+            <div
+                class="border border-green-600 bg-black/80 flex flex-col p-2 shadow-[0_0_10px_rgba(0,255,0,0.2)] col-span-2 md:col-span-1 justify-center">
+                <div class="flex justify-between items-center border-b border-green-600 pb-1 mb-3 px-1">
+                    <span class="text-xs font-bold text-white uppercase">Download</span>
+                </div>
+                <div class="text-center text-[10px] md:text-xs mb-2">Downloading Critical Data...</div>
+                <div class="w-full bg-green-950 h-4 border border-green-600 relative">
+                    <div id="hack-progress-bar" class="bg-green-500 h-full w-0 transition-all duration-75"></div>
+                    <div id="hack-progress-text"
+                        class="absolute inset-0 flex items-center justify-center text-[10px] text-white mix-blend-difference font-bold">
+                        0%</div>
+                </div>
+            </div>
+
+            <!-- Window: Compiler (Matrix) -->
+            <div
+                class="border border-green-600 bg-black/80 flex flex-col p-2 shadow-[0_0_10px_rgba(0,255,0,0.2)] overflow-hidden relative">
+                <div
+                    class="flex justify-between items-center border-b border-green-600 pb-1 mb-1 px-1 relative z-10 bg-black/50">
+                    <span class="text-xs font-bold text-white uppercase">Compiler</span>
+                </div>
+                <div id="hack-matrix-bg"
+                    class="absolute top-8 bottom-0 left-0 right-0 opacity-40 text-[10px] whitespace-pre-wrap break-all overflow-hidden leading-none z-0 px-2 text-green-400">
+                </div>
+            </div>
+
+            <!-- Window: Countdown -->
+            <div
+                class="border border-green-600 bg-black/80 flex flex-col p-2 shadow-[0_0_10px_rgba(0,255,0,0.2)] justify-center items-center relative overflow-hidden">
+                <div
+                    class="flex justify-between items-center border-b border-green-600 pb-1 mb-1 px-1 w-full relative z-10">
+                    <span class="text-xs font-bold text-white uppercase">Countdown</span>
+                </div>
+                <div id="hack-countdown"
+                    class="text-4xl md:text-5xl font-bold mt-2 animate-pulse text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] relative z-10">
+                    601</div>
+                <div class="w-full bg-green-500 text-black text-center text-xs font-bold mt-3 py-1 relative z-10">EST.
+                    TIME</div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+body {
+    font-family: 'Share Tech Mono', monospace;
+    background-color: #050505;
+}
+
+/* Hiệu ứng bóng chữ phát sáng xanh neon */
+.neon-text {
+    text-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+/* Đổi màu viền khi người dùng click vào ô input */
+.neon-border:focus {
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
+    border-color: #22c55e !important;
+}
+
+/* Định dạng thanh cuộn mượt mà chuẩn giao diện Cyber */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #022c22;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #15803d;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #22c55e;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
