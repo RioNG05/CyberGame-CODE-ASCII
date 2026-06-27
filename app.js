@@ -137,7 +137,7 @@ function startHackSimulation() {
         let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
         let str = "";
         for(let i=0; i<60; i++) str += chars.charAt(Math.floor(Math.random() * chars.length));
-        matrixBg.innerText = str + "\\n" + matrixBg.innerText;
+        matrixBg.innerText = str + "\n" + matrixBg.innerText;
         if(matrixBg.innerText.length > 800) matrixBg.innerText = matrixBg.innerText.substring(0, 800);
     }, 50);
 
@@ -174,7 +174,7 @@ function isEmptyObject( obj ) {
         chart.innerHTML = "";
         for(let i=0; i<25; i++) {
             let h = Math.floor(Math.random() * 90 + 10);
-            chart.innerHTML += \`<div class="flex-1 bg-green-500 opacity-80" style="height: \${h}%"></div>\`;
+            chart.innerHTML += `<div class="flex-1 bg-green-500 opacity-80" style="height: ${h}%"></div>`;
         }
         document.getElementById("hack-transfer-rate").innerText = Math.floor(Math.random() * 800 + 200) + "MB/s";
     }, 150);
@@ -252,9 +252,9 @@ function isEmptyObject( obj ) {
                 const successModal = document.getElementById("success-modal");
                 successModal.classList.remove("hidden");
                 successModal.classList.add("flex");
-                successModal.innerHTML = `<div class="text-center p-8 bg-green-950 border-2 border-green-500 rounded shadow-[0_0_40px_rgba(34,197,94,0.6)] w-full max-w-xl mx-4 relative overflow-hidden">
+                successModal.innerHTML = `<div class="text-center p-8 bg-green-950 border-2 border-green-500 rounded shadow-[0_0_40px_rgba(34,197,94,0.6)] w-full max-w-2xl mx-4 relative overflow-hidden">
                     <div class="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.4)_50%)] bg-[length:100%_4px] pointer-events-none"></div>
-                    <h1 class="text-3xl md:text-5xl text-white font-bold mb-6 neon-text relative z-10">CHUYÊN ÁN THÀNH CÔNG</h1>
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-bold mb-6 neon-text relative z-10 whitespace-nowrap">CHUYÊN ÁN THÀNH CÔNG</h1>
                     <p class="text-green-300 mb-6 leading-relaxed relative z-10">Tất cả bằng chứng về sự bóc lột và tích lũy tư bản đã được tải về trọn vẹn và gửi về máy chủ của Cục cảnh sát.</p>
                     <button onclick="location.reload()" class="bg-green-600 text-black font-bold px-8 py-3 rounded hover:bg-white transition-all uppercase tracking-widest relative z-10 shadow-[0_0_20px_rgba(34,197,94,0.6)]">Hoàn tất</button>
                 </div>`;
