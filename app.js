@@ -5,14 +5,14 @@
 
 // 1. Khai báo bộ câu hỏi liên kết chặt chẽ với logic index xáo trộn kết quả
 const gameQuestions = [
-    { id: 1, q: "Trong công thức giá trị hàng hóa của Mác W = c + v + m, thành phần nào là 'Tư bản bất biến' đại diện cho giá trị máy móc, nguyên vật liệu sản xuất bóng hoặc áo đấu World Cup?", ans: "c (Tư bản bất biến)", code: "255" }, // U
-    { id: 2, q: "Tiền lương mà nhà tư bản trả cho cầu thủ hoặc công nhân may áo đấu được Mác gọi là gì trong cấu trúc giá trị?", ans: "Tư bản khả biến (v)", code: "67" }, // C
-    { id: 3, q: "Khi nhà tư bản kéo dài ngày lao động của công nhân từ 8 tiếng lên 12 tiếng nhưng giữ nguyên lương, họ đang sản xuất ra loại giá trị thặng dư nào?", ans: "Giá trị thặng dư Tuyệt đối", code: "4C" }, // L
-    { id: 4, q: "Phạm trù nào là hình thái biến tướng của giá trị thặng dư, dễ bị nhầm lẫn là do tài kinh doanh hay do thị trường lưu thông tự đẻ ra tiền?", ans: "Lợi nhuận (p)", code: "73" }, // I
-    { id: 5, q: "Khi doanh nghiệp áp dụng công nghệ AI vào dây chuyền sản xuất giúp tăng năng suất, rút ngắn thời gian lao động tất yếu, họ thu được loại giá trị thặng dư nào?", ans: "Giá trị thặng dư Tương đối", code: "59" }, // Y
-    { id: 6, q: "Ai hay yếu tố nào là nguồn gốc duy nhất thực sự tạo ra phần giá trị dôi ra (m) cho xã hội?", ans: "Sức lao động", code: "4E" }, // N
-    { id: 7, q: "Tỷ suất giá trị thặng dư (m') phản ánh điều gì trong mối quan hệ giữa nhà tư bản và người công nhân?", ans: "Trình độ bóc lột của nhà tư bản đối với người lao động", code: "254" }, // T
-    { id: 8, q: "Hình thức giá trị thặng dư nào được tạo ra do có năng suất lao động cá biệt cao hơn năng suất lao động xã hội, được coi là động lực mạnh mẽ nhất của sự cạnh tranh nhưng chỉ mang tính chất tạm thời?", ans: "Giá trị thặng dư siêu ngạch", code: "1000001" }, // A
+    { id: 1, q: "Trong công thức giá trị hàng hóa của Mác W = c + v + m, thành phần nào là 'Tư bản bất biến' đại diện cho giá trị máy móc, nguyên vật liệu sản xuất?", ans: "c (Tư bản bất biến)", code: "255" }, // U
+    { id: 2, q: "Tiền lương mà nhà tư bản trả cho cầu thủ hoặc công nhân may áo đấu được Mác gọi là gì trong cấu trúc giá trị? (4 từ)", ans: "Tư bản khả biến (v)", code: "67" }, // C
+    { id: 3, q: "Lợi nhuận chịu tác động trực tiếp của yếu tố nào? (4 từ)", ans: "Giá cả thị trường", code: "4C" }, // L
+    { id: 4, q: "Phạm trù nào là hình thái biến tướng của giá trị thặng dư, dễ bị nhầm lẫn là do tài kinh doanh hay do thị trường lưu thông tự đẻ ra tiền? (2 từ)", ans: "Lợi nhuận (p)", code: "73" }, // I
+    { id: 5, q: "Theo C. Mác, đại lượng nào phản ánh kết quả kinh doanh trên thị trường? (2 từ)", ans: "Lợi nhuận", code: "59" }, // Y
+    { id: 6, q: "Ai hay yếu tố nào là nguồn gốc duy nhất thực sự tạo ra phần giá trị dôi ra (m) cho xã hội? (2 từ)", ans: "Sức lao động", code: "4E" }, // N
+    { id: 7, q: "Máy móc có tạo ra giá trị mới không?", ans: "Không", code: "254" }, // T
+    { id: 8, q: "Giá trị thặng dư phản ánh bản chất gì của nền sản xuất tư bản? (2 từ)", ans: "Bóc lột", code: "1000001" }, // A
     { id: 9, q: "Khi cung lớn hơn cầu, giá cả thị trường sẽ biến động như thế nào so với giá trị thực tế của hàng hóa?", ans: "Giá cả sẽ thấp hơn giá trị (Giá cả < Giá trị)", code: "1001000" }, // H
     { id: 10, q: "Chi phí sản xuất tư bản chủ nghĩa (k) bao gồm những yếu tố nào hợp thành?", ans: "k = c + v (Tư bản bất biến + Tư bản khả biến)", code: "66" } // B
 ];
@@ -102,15 +102,15 @@ window.checkFinalKeyword = function () {
 }
 
 // 7. Đóng modal (mô phỏng trích xuất)
-window.closeModal = function() {
+window.closeModal = function () {
     document.getElementById("success-modal").classList.add("hidden");
     document.getElementById("success-modal").classList.remove("flex");
-    
+
     // Khởi chạy mô phỏng Hack Dữ Liệu
     const sim = document.getElementById("hack-simulation");
     sim.classList.remove("hidden");
     sim.classList.add("block");
-    
+
     startHackSimulation();
 }
 
@@ -122,23 +122,23 @@ function startHackSimulation() {
     const codeLines = document.getElementById("hack-code-lines");
     const chart = document.getElementById("hack-chart");
     const countdown = document.getElementById("hack-countdown");
-    
+
     // Clear everything
-    if(terminal) terminal.innerHTML = "";
-    if(progressBar) progressBar.style.width = "0%";
-    if(progressText) progressText.innerText = "0%";
-    if(matrixBg) matrixBg.innerText = "";
-    if(codeLines) codeLines.innerText = "";
-    if(chart) chart.innerHTML = "";
-    
+    if (terminal) terminal.innerHTML = "";
+    if (progressBar) progressBar.style.width = "0%";
+    if (progressText) progressText.innerText = "0%";
+    if (matrixBg) matrixBg.innerText = "";
+    if (codeLines) codeLines.innerText = "";
+    if (chart) chart.innerHTML = "";
+
     // 1. Matrix BG effect
     let matrixInterval = setInterval(() => {
-        if(!matrixBg) return;
+        if (!matrixBg) return;
         let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
         let str = "";
-        for(let i=0; i<60; i++) str += chars.charAt(Math.floor(Math.random() * chars.length));
+        for (let i = 0; i < 60; i++) str += chars.charAt(Math.floor(Math.random() * chars.length));
         matrixBg.innerText = str + "\n" + matrixBg.innerText;
-        if(matrixBg.innerText.length > 800) matrixBg.innerText = matrixBg.innerText.substring(0, 800);
+        if (matrixBg.innerText.length > 800) matrixBg.innerText = matrixBg.innerText.substring(0, 800);
     }, 50);
 
     // 2. Encryptor code typing
@@ -158,7 +158,7 @@ function isEmptyObject( obj ) {
 }`;
     let codeIdx = 0;
     let codeInterval = setInterval(() => {
-        if(!codeLines) return;
+        if (!codeLines) return;
         if (codeIdx < jsCode.length) {
             codeLines.innerText += jsCode.charAt(codeIdx);
             codeIdx++;
@@ -170,19 +170,19 @@ function isEmptyObject( obj ) {
 
     // 3. Dynamic Chart
     let chartInterval = setInterval(() => {
-        if(!chart) return;
+        if (!chart) return;
         chart.innerHTML = "";
-        for(let i=0; i<25; i++) {
+        for (let i = 0; i < 25; i++) {
             let h = Math.floor(Math.random() * 90 + 10);
             chart.innerHTML += `<div class="flex-1 bg-green-500 opacity-80" style="height: ${h}%"></div>`;
         }
         document.getElementById("hack-transfer-rate").innerText = Math.floor(Math.random() * 800 + 200) + "MB/s";
     }, 150);
-    
+
     // 4. Countdown
     let cd = 601;
     let cdInterval = setInterval(() => {
-        if(!countdown) return;
+        if (!countdown) return;
         cd -= Math.floor(Math.random() * 7);
         if (cd < 0) cd = 0;
         countdown.innerText = cd;
@@ -210,45 +210,45 @@ function isEmptyObject( obj ) {
         "ERASING TRACES...",
         "DISCONNECTING..."
     ];
-    
+
     let lineIdx = 0;
     let progress = 0;
-    
+
     let lineInterval = setInterval(() => {
-        if(!terminal || !progressBar) return;
-        if(lineIdx < hackLines.length) {
+        if (!terminal || !progressBar) return;
+        if (lineIdx < hackLines.length) {
             let p = document.createElement("div");
             p.innerText = "> " + hackLines[lineIdx];
-            if(hackLines[lineIdx].includes("WARNING")) p.className = "text-red-500 font-bold neon-text";
+            if (hackLines[lineIdx].includes("WARNING")) p.className = "text-red-500 font-bold neon-text";
             terminal.appendChild(p);
             terminal.scrollTop = terminal.scrollHeight;
             lineIdx++;
         }
-        
+
         progress += Math.random() * 4 + 1.5;
-        if(progress > 100) progress = 100;
-        
+        if (progress > 100) progress = 100;
+
         progressBar.style.width = progress + "%";
         progressText.innerText = Math.floor(progress) + "%";
-        
-        if(progress === 100 && lineIdx >= hackLines.length) {
+
+        if (progress === 100 && lineIdx >= hackLines.length) {
             clearInterval(lineInterval);
             clearInterval(matrixInterval);
             clearInterval(codeInterval);
             clearInterval(chartInterval);
             clearInterval(cdInterval);
-            
+
             let finalMsg = document.createElement("div");
             finalMsg.innerText = "SYSTEM: ALL DATA SECURED. DISCONNECTING...";
             finalMsg.className = "text-white font-bold text-xs md:text-sm mt-2 animate-pulse";
             terminal.appendChild(finalMsg);
             terminal.scrollTop = terminal.scrollHeight;
-            
+
             setTimeout(() => {
                 const sim = document.getElementById("hack-simulation");
                 sim.classList.remove("block", "flex");
                 sim.classList.add("hidden");
-                
+
                 const successModal = document.getElementById("success-modal");
                 successModal.classList.remove("hidden");
                 successModal.classList.add("flex");
